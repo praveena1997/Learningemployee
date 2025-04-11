@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 public class EmployeeService {
 
     @Autowired
-
     private EmployeeRepository employeeRepository;
-
     public EmployeesEntity addEmployee(EmployeeDTO employeeDTO) {
         EmployeeValidations.ValidateEmployee(employeeDTO);
 
@@ -32,7 +30,6 @@ public class EmployeeService {
 
         return employeeRepository.save(employee);
     }
-
 
     public EmployeesEntity updateEmployee(String employeeId, EmployeeDTO employeeDTO) {
         EmployeesEntity employee = employeeRepository.findById(employeeId)

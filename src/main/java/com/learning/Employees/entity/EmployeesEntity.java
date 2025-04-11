@@ -5,17 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.util.Random;
-import java.util.UUID;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class EmployeesEntity {
     @Id
     @Column(name = "EMPLOYEEID", updatable = false, nullable = false, unique = true)
@@ -46,7 +41,4 @@ public class EmployeesEntity {
         int randomNum = new Random().nextInt(9000) + 1000;
         return prefix + randomNum;
     }
-
-
-
 }

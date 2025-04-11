@@ -1,16 +1,11 @@
 package com.learning.Employees.validation;
-
 import com.learning.Employees.dto.EmployeeDTO;
 import com.learning.Employees.exception.RequestValidationException;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.http.HttpStatus;
-
-
 import java.util.regex.Pattern;
 
 public class EmployeeValidations {
-
-
     private static  final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
 
     private static final Pattern PHONE_PATTERN = Pattern.compile("^(\\+?[0-9]{1,4})?[0-9]{10}$");
@@ -44,10 +39,5 @@ public class EmployeeValidations {
         if(employeeDTO.getAddress() != null && StringUtils.isNullOrEmpty(employeeDTO.getAddress())){
             throw new RequestValidationException("Address is required", HttpStatus.UNPROCESSABLE_ENTITY);
         }
-
-
-
     }
-
-
 }
