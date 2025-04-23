@@ -3,7 +3,6 @@ package com.learning.Employees.controller;
 import com.learning.Employees.dto.EmployeeDTO;
 import com.learning.Employees.entity.EmployeesEntity;
 import com.learning.Employees.service.EmployeeService;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
+
     @Autowired
     private EmployeeService employeeService;
+
     @PostMapping("/AddEmployee")
     public ResponseEntity<EmployeesEntity> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
         EmployeesEntity savedEmployee = employeeService.addEmployee(employeeDTO);
@@ -21,7 +22,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/updateEmployee/{id}")
-    public ResponseEntity<EmployeesEntity> updateEmployee(@PathVariable String id,@RequestBody  EmployeeDTO employeeDTO){
+    public ResponseEntity<EmployeesEntity> updateEmployee(@PathVariable String id, @RequestBody EmployeeDTO employeeDTO){
         EmployeesEntity updatedEmployee = employeeService.updateEmployee(id,employeeDTO);
                 return ResponseEntity.ok(updatedEmployee);
     }

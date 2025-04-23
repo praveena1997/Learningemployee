@@ -6,29 +6,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Random;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeesEntity {
+
     @Id
     @Column(name = "EMPLOYEEID", updatable = false, nullable = false, unique = true)
     private String employeeid;
 
-    @Column(name="FIRSTNAME")
+    @Column(name ="FIRSTNAME")
     private String firstname;
 
-    @Column(name="LASTNAME")
+    @Column(name ="LASTNAME")
     private String lastname;
 
-    @Column(name="PHONENUMBER")
+    @Column(name ="PHONENUMBER")
     private String phonenumber;
 
-    @Column(name="EMAIl")
+    @Column(name ="EMAIl")
     private String email;
 
-    @Column(name="ADDRESS")
+    @Column(name ="ADDRESS")
     private String address;
 
     @PrePersist

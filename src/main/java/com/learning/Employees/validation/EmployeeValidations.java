@@ -1,4 +1,5 @@
 package com.learning.Employees.validation;
+
 import com.learning.Employees.dto.EmployeeDTO;
 import com.learning.Employees.exception.RequestValidationException;
 import com.mysql.cj.util.StringUtils;
@@ -6,11 +7,11 @@ import org.springframework.http.HttpStatus;
 import java.util.regex.Pattern;
 
 public class EmployeeValidations {
-    private static  final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
 
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     private static final Pattern PHONE_PATTERN = Pattern.compile("^(\\+?[0-9]{1,4})?[0-9]{10}$");
 
-    public static void ValidateEmployee(EmployeeDTO employeeDTO){
+    public static void validateEmployee(EmployeeDTO employeeDTO){
 
         if(employeeDTO.getFirstname() != null && StringUtils.isNullOrEmpty(employeeDTO.getFirstname())){
             throw new RequestValidationException("First name is required", HttpStatus.UNPROCESSABLE_ENTITY);

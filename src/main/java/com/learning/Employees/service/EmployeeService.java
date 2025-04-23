@@ -1,6 +1,5 @@
 package com.learning.Employees.service;
 
-
 import com.learning.Employees.dto.EmployeeDTO;
 import com.learning.Employees.entity.EmployeesEntity;
 import com.learning.Employees.exception.RequestValidationException;
@@ -17,11 +16,12 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
     public EmployeesEntity addEmployee(EmployeeDTO employeeDTO) {
-        EmployeeValidations.ValidateEmployee(employeeDTO);
+
+        EmployeeValidations.validateEmployee(employeeDTO);
 
         EmployeesEntity employee = new EmployeesEntity();
-
         employee.setFirstname(employeeDTO.getFirstname());
         employee.setLastname(employeeDTO.getLastname());
         employee.setPhonenumber(employeeDTO.getPhonenumber());
@@ -32,10 +32,11 @@ public class EmployeeService {
     }
 
     public EmployeesEntity updateEmployee(String employeeId, EmployeeDTO employeeDTO) {
+
         EmployeesEntity employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new RequestValidationException("Employee not found", HttpStatus.NOT_FOUND));
 
-        EmployeeValidations.ValidateEmployee(employeeDTO);
+        EmployeeValidations.validateEmployee(employeeDTO);
 
         if (employeeDTO.getFirstname() != null) {
             employee.setFirstname(employeeDTO.getFirstname());
@@ -58,15 +59,13 @@ public class EmployeeService {
 
     public void deleteEmployee(String employeeId) {
         EmployeesEntity employee = employeeRepository.findById(employeeId)
-                .orElseThrow(() -> new  RequestValidationException("Employee not found" , HttpStatus.NOT_FOUND));
+                .orElseThrow(() ->new RequestValidationException("Employee not found" , HttpStatus.NOT_FOUND));
         employeeRepository.delete(employee);
     }
 
     public EmployeesEntity getEmployee(String employeeId) {
         return employeeRepository.findById(employeeId)
-
                 .orElseThrow(() -> new RequestValidationException("Employees not found", HttpStatus.NOT_FOUND));
-
     }
 
     public Page<EmployeesEntity> getAllEmployees(int page, int size) {
